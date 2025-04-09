@@ -7,7 +7,19 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
+<body class="m-2">
+  <h1 class="text-2xl font-bold">Basics of Signals</h1>
 
+  <p>{{ count() }}</p>
+  <p>{{ x }}</p>
+
+  <button
+    (click)="updateValue()"
+    class="border bg-gray-300 cursor-pointer active:bg-gray-500"
+  >
+    Update value
+  </button>
+</body>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
@@ -16,6 +28,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />
