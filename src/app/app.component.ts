@@ -1,4 +1,11 @@
-import { Component, computed, effect, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,15 +15,29 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  // data = signal<number | string>(10); //data type of value
-  data: WritableSignal<number | string> = signal(10); //data type of signal
-  //writable signal
+  // x = 10;
+  // y = 20;
+  // z = this.x + this.y;
 
-  count: Signal<number> = computed(() => 200);
-  //computed signal (read-only) -> cannot be changed once declared
+  x = signal(10);
+  y = signal(20);
+  z = computed(() => this.x() + this.y());
 
-  updateSignal(){
-    this.data.set("Hello");
-    // this.data.update((val) => val+1)
+  showValue() {
+    // console.log(this.z); //30
+    // this.x = 100;
+    // console.log(this.x); //100
+    // console.log(this.z); //still 30
+    // //Because z is calculated only once during class instantiation and doesn't update when x or y change.
+
+    console.log(this.z()); //30
+    this.x.set(100);
+    console.log(this.x()); //100
+    console.log(this.z()); //120
+    //computed signal updated coz their dependency was a signal(x,y)
+  }
+
+  updateX() {
+    this.x.set(200);
   }
 }

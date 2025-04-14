@@ -8,16 +8,21 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <body class="m-2">
-  <h1 class="text-2xl font-bold">Data types with Signals</h1>
+  <h1 class="text-2xl font-bold">Computed Signals</h1>
 
-  <p>{{ data() }}</p>
-  <p>{{ count() }}</p>
+  <p>{{ z() }}</p>
 
   <button
-    (click)="updateSignal()"
+    (click)="showValue()"
+    class="border bg-gray-300 cursor-pointer active:bg-gray-500 mr-2"
+  >
+    Show Value
+  </button>
+  <button
+    (click)="updateX()"
     class="border bg-gray-300 cursor-pointer active:bg-gray-500"
   >
-    Update
+    Update X
   </button>
 </body>
 
