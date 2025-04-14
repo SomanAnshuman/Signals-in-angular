@@ -10,19 +10,26 @@
 <body class="m-2">
   <h1 class="text-2xl font-bold">Computed Signals</h1>
 
-  <p>{{ z() }}</p>
+  <p>{{ username() }}</p>
+  <p>{{ count() }}</p>
+  <br>
+
+  @if (displayHeading) {
+    <h1 class="text-xl font-bold bg-green-600">Page heading</h1>
+  }
+  <br>
 
   <button
-    (click)="showValue()"
-    class="border bg-gray-300 cursor-pointer active:bg-gray-500 mr-2"
-  >
-    Show Value
-  </button>
-  <button
-    (click)="updateX()"
+    (click)="username.set('Soman')"
     class="border bg-gray-300 cursor-pointer active:bg-gray-500"
   >
-    Update X
+    Update username
+  </button><br>
+  <button
+    (click)="toggleValue()"
+    class="border bg-gray-300 cursor-pointer active:bg-gray-500"
+  >
+    Toggle Value
   </button>
 </body>
 

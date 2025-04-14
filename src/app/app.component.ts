@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  effect,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -15,29 +8,27 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  // x = 10;
-  // y = 20;
-  // z = this.x + this.y;
+  username = signal('Anil');
 
-  x = signal(10);
-  y = signal(20);
-  z = computed(() => this.x() + this.y());
+  count = signal(0);
+  displayHeading = false;
 
-  showValue() {
-    // console.log(this.z); //30
-    // this.x = 100;
-    // console.log(this.x); //100
-    // console.log(this.z); //still 30
-    // //Because z is calculated only once during class instantiation and doesn't update when x or y change.
+  constructor() {
+    effect(() => {
+      console.log(this.username());
 
-    console.log(this.z()); //30
-    this.x.set(100);
-    console.log(this.x()); //100
-    console.log(this.z()); //120
-    //computed signal updated coz their dependency was a signal(x,y)
+      if (this.count() % 3 === 0) {
+        this.displayHeading = true;
+        setTimeout(() => {
+          this.displayHeading = false;
+        }, 2000);
+      } else {
+        this.displayHeading = false;
+      }
+    });
   }
 
-  updateX() {
-    this.x.set(200);
+  toggleValue() {
+    this.count.set(this.count() + 1);
   }
 }
