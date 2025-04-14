@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, computed, effect, Signal, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,18 +8,15 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  count = signal(10);
-  x = 20;
+  // data = signal<number | string>(10); //data type of value
+  data: WritableSignal<number | string> = signal(10); //data type of signal
+  //writable signal
 
-  constructor() {
-    effect(() => {
-      //this 'effect' runs if a signal is included below and is updated anytime
-      console.log('normal property = ', this.x);
-      console.log('signal = ', this.count());
-    });
-  }
-  updateValue() {
-    this.x = this.x + 1;
-    this.count.set(this.count() + 1);
+  count: Signal<number> = computed(() => 200);
+  //computed signal (read-only) -> cannot be changed once declared
+
+  updateSignal(){
+    this.data.set("Hello");
+    // this.data.update((val) => val+1)
   }
 }
